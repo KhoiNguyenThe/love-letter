@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời Nhắn Bí Mật 💌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffeef2;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Khung chứa mã QR */
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 90%;
+        }
+
+        h2 { 
+            color: #ff4d6d; 
+            margin: 0;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Style cho phần hiển thị QR */
+        #qrcode {
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            border: 2px solid #ffeef2;
+        }
+
+        #qrcode img {
+            display: block;
+        }
+
+        .hint {
+            color: #ff758f;
+            font-size: 0.95rem;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        /* Hiệu ứng trái tim bay nhẹ ở nền (tùy chọn cho sinh động) */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.2);
+            user-select: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Dành riêng cho cậu... ❤️</h2>
+        <div id="qrcode"></div>
+        <p class="hint">Quét mã để nhận bất ngờ nhé!</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script>
+        window.onload = function() {
+            // 1. Lấy URL hiện tại của trang web
+            let currentUrl = window.location.href;
+
+            // 2. Logic xử lý link để dẫn đến file letter.html
+            let targetUrl;
+            
+            // Xóa phần "index.html" nếu có ở cuối link
+            if (currentUrl.includes("index.html")) {
+                targetUrl = currentUrl.replace("index.html", "letter.html");
+            } else {
+                // Nếu link kết thúc bằng dấu / (ví dụ: ...github.io/love/) thì cộng thêm tên file
+                targetUrl = currentUrl.endsWith("/") ? currentUrl + "letter.html" : currentUrl + "/letter.html";
+            }
+
+            // In ra console để bạn kiểm tra nếu cần
+            console.log("Mã QR sẽ dẫn đến: " + targetUrl);
+
+            // 3. Khởi tạo mã QR
+            new QRCode(document.getElementById("qrcode"), {
+                text: targetUrl,
+                width: 220,
+                height: 220,
+                colorDark : "#ff4d6d", // Màu của QR (Hồng đậm)
+                colorLight : "#ffffff", // Nền của QR
+                correctLevel : QRCode.CorrectLevel.H // Độ phân giải cao nhất để dễ quét
+            });
+        };
+    </script>
+</body>
+</html>

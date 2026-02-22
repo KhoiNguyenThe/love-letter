@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thư Tỏ Tình 💌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style/style.css">
+    <style>
+        /* Nút quay lại trang QR */
+        .back-home {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            text-decoration: none;
+            color: #ff4d6d;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 12px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .back-home:hover {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        /* Container chứa đóa hoa hồng */
+        #rose-container {
+            display: none; /* Ẩn lúc đầu */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            text-align: center;
+        }
+
+        #rose-container img {
+            width: 280px; /* Kích thước đóa hoa */
+            filter: drop-shadow(0 0 20px rgba(255, 77, 109, 0.6));
+            animation: flowerBloom 2s ease-in-out;
+        }
+
+        #rose-container p {
+            font-family: 'Pacifico', cursive;
+            color: #ff4d6d;
+            font-size: 26px;
+            margin-top: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Hiệu ứng mờ nền khi hiện hoa */
+        .main-content-wrapper {
+            transition: filter 0.8s ease;
+        }
+
+        .blur-active {
+            filter: blur(10px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Animation cho hoa */
+        @keyframes flowerBloom {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-content-wrapper">
+        <a href="index.html" class="back-home">← Quay lại</a>
+        
+        <div class="envlope-wrapper">
+            <div id="envelope" class="close">
+                <div class="wax-seal"></div>
+                <div class="front flap"></div>
+                <div class="front pocket"></div>
+                <div class="letter">
+                    <div class="letter-corner corner-tl"></div>
+                    <div class="letter-corner corner-br"></div>
+                    <div class="message">
+                        <div class="lyrics">
+                            <div class="lyric-page active" id="page1"><p>Gửi Kiều Mỹ,...❤️ </p></div>
+                            <div class="lyric-page" id="page2"><p>Mình viết những dòng này không phải vì nhất thời rung động,</p></div>
+                            <div class="lyric-page" id="page3"><p>Mà vì mình đã nghĩ đến cậu rất nhiều.</p></div>
+                            <div class="lyric-page" id="page4"><p>Không biết từ khi nào...🥰</p></div>
+                            <div class="lyric-page" id="page5"><p>nhưng cậu đã trở thành một phần đặc biệt trong mình.</p></div>
+                            <div class="lyric-page" id="page6"><p>Không ồn ào, không rực rỡ ✨,</p></div>
+                            <div class="lyric-page" id="page7"><p>chỉ là sự hiện diện của cậu làm mọi thứ trở nên dễ chịu hơn.</p></div>
+                            <div class="lyric-page" id="page8"><p>Mình không hứa sẽ mang cả thế giới cho cậu,</p></div>
+                            <div class="lyric-page" id="page9"><p>nhưng mình có thể trao cậu cả trái tim này ❤️‍🔥.</p></div>
+                            <div class="lyric-page" id="page10"><p>Chỉ cần cậu muốn,</p></div>
+                            <div class="lyric-page" id="page11"><p>mình luôn sẵn sàng ở đây,</p></div>
+                            <div class="lyric-page" id="page12"><p>Nếu cậu cũng có chút gì đó giống mình...</p></div>
+                            <div class="lyric-page" id="page13"><p>Thì cho mình một cơ hội, được ở bên cạnh cậu.</p></div>
+                            <div class="lyric-page" id="page14"><p>Thật lòng.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hearts">
+                    <div class="heart a1"></div>
+                    <div class="heart a2"></div>
+                    <div class="heart a3"></div>
+                </div>
+                <div class="sparkles">
+                    <div class="sparkle s1"></div>
+                    <div class="sparkle s2"></div>
+                    <div class="sparkle s3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="openBtn">Mở</button>
+            <button id="resetBtn" style="display: none;">Đóng</button>
+        </div>
+    </div>
+
+    <div id="rose-container">
+        <img src="https://pngimg.com/uploads/rose/rose_PNG651.png" id="rose-img" alt="Rose">
+        <p>Tặng cậu đóa hoa này... 🌹</p>
+    </div>
+
+    <audio id="sound" loop>
+      <source src="./style/TheWayIStillLoveYou.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./style/script.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Ghi đè hoặc thêm logic vào nút Reset (Đóng)
+            $("#resetBtn").click(function() {
+                // 1. Thực hiện đóng phong bì (giữ nguyên logic gốc của script.js)
+                $("#envelope").removeClass("open").addClass("close");
+                $(this).hide();
+                $("#openBtn").show();
+
+                // 2. Hiển thị đóa hoa hồng sau khi phong bì đóng lại
+                setTimeout(function() {
+                    // Làm mờ toàn bộ nội dung phía sau
+                    $(".main-content-wrapper").addClass("blur-active");
+                    
+                    // Hiện đóa hoa với hiệu ứng fadeIn
+                    $("#rose-container").fadeIn(1000);
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>
