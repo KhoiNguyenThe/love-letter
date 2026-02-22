@@ -30,7 +30,7 @@
             text-align: center;
         }
         #rose-container img {
-            width: 280px;
+            width: 250px;
             filter: drop-shadow(0 0 20px rgba(255, 77, 109, 0.6));
             animation: flowerBloom 2s ease-in-out;
         }
@@ -90,7 +90,7 @@
     </div>
 
     <div id="rose-container">
-        <img src="https://static.vecteezy.com/system/resources/previews/023/257/399/non_2x/red-rose-isolated-on-transparent-background-generative-ai-free-png.png" id="rose-img" alt="Rose">
+        <img src="https://www.pngmart.com/files/1/Red-Rose-PNG-Transparent-Image.png" id="rose-img" alt="Rose">
         <p>Tặng cậu đóa hoa này... 🌹</p>
     </div>
 
@@ -99,16 +99,19 @@
     </audio>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script> <script>
+    <script src="script.js"></script> 
+    <script>
         $(document).ready(function() {
-            $("#resetBtn").click(function() {
+            // Đảm bảo nút Đóng sẽ kích hoạt hoa hồng
+            $("#resetBtn").on("click", function() {
                 $("#envelope").removeClass("open").addClass("close");
                 $(this).hide();
                 $("#openBtn").show();
+                
                 setTimeout(function() {
                     $(".main-content-wrapper").addClass("blur-active");
-                    $("#rose-container").fadeIn(1000);
-                }, 600);
+                    $("#rose-container").fadeIn(1200);
+                }, 800);
             });
         });
     </script>
